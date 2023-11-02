@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "rJKF/MvjNFzQIUQUHMhI0b5n56usjPMBhszB1aAv8MSq3AUeus9vl/wOrRGKihjL2O/O/ST3PE5G/f5IO2gpfg==",
+  "success": true,
+  "projectFilePath": "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\helena.aktar\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\helena.aktar\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\helena.aktar\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\helena.aktar\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\helena.aktar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\helena.aktar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
