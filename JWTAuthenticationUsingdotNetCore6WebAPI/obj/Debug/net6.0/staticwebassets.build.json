@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ljOzRwDPvtR6AYW4SbaNtlKUt2RqRwjq5QLtRZnQ++E=",
+  "Source": "JWTAuthenticationUsingdotNetCore6WebAPI",
+  "BasePath": "_content/JWTAuthenticationUsingdotNetCore6WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
