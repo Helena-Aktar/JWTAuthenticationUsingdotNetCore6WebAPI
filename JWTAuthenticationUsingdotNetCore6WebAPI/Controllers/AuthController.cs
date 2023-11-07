@@ -17,19 +17,25 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
         public static User user = new User();
 
         private readonly IConfiguration _configuration;
+        private readonly IUserService _userService;
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(IConfiguration configuration,IUserService userService)
         {
             _configuration = configuration;
+            _userService = userService;
         }
         [HttpGet("getUserInfo"),Authorize]
         public IActionResult GetMe()
         {
-            User user = new User();
-            user.UserName = User?.Identity?.Name;
-            var claimName = User.FindFirstValue(ClaimTypes.Name);
-            var claimRole = User.FindFirstValue(ClaimTypes.Role);
-            return Ok(new{ user, claimName, claimRole });
+            //without using userService and interface
+            //User user = new User();
+            //user.UserName = User?.Identity?.Name;
+            //var claimName = User.FindFirstValue(ClaimTypes.Name);
+            //var claimRole = User.FindFirstValue(ClaimTypes.Role);
+            //return Ok(new{ user, claimName, claimRole });
+
+            object user = _userService.getUser();
+            return Ok(new { user });
         }
 
         [HttpPost("register")]
@@ -39,7 +45,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             user.UserName= req.UserName;
             user.PasswordHash= passwordHash;
             user.PasswordSalt= passwordSalt;
-      
+      //dont return passwordHash and passwordSalt while Working IRL
             return Ok(new {user});
         }
 
@@ -55,11 +61,67 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
                 return BadRequest("Wrong Password!");
             }
             string token = CreateToken(user);
+            var refreshToken = GenerateRefreshToken();
+            SetRefreshToken(refreshToken);
             return Ok(new { req.UserName,token});
         }
+        [HttpPost("refreshToken")]
+        public async Task<ActionResult<string>> RefreshToken()
+        {
+            string tokenExpiresString = user.RefTokenExpires.ToString();
+            Console.WriteLine(tokenExpiresString);
+            var refreshToken = Request.Cookies["refreshToken"];
+            Console.WriteLine(refreshToken);
 
-       
+            if (user.RefTokenExpires < DateTime.UtcNow)
+            {
+                return Unauthorized("Token expired.");
+            }
+            else if(!user.RefreshToken.Equals(refreshToken))
+            {
+                return Unauthorized("Invalid Refresh Token.");
+            }
+           
+
+            string token = CreateToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+            SetRefreshToken(newRefreshToken);
+            Console.Write(user);
+            return Ok(token);
+        }
+
         // helper methods
+
+
+
+        private RefreshToken GenerateRefreshToken()
+        {
+
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.UtcNow.AddSeconds(60),
+                Created = DateTime.UtcNow
+            };
+
+            return refreshToken;
+        }
+
+        private void SetRefreshToken(RefreshToken newRefreshToken)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires
+            };
+            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+            user.RefreshToken = newRefreshToken.Token;
+            user.RefTokenCreated = newRefreshToken.Created;
+            user.RefTokenExpires = newRefreshToken.Expires;
+        }
+
+
         private string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>
@@ -73,7 +135,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             var cred = new SigningCredentials(key,SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
+                expires: DateTime.UtcNow.AddSeconds(30),
                 signingCredentials: cred
                 );
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);

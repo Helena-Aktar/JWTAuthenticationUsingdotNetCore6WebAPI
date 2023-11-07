@@ -13,16 +13,16 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Services.UserServices
         {
             _httpContextAccessor = httpContextAccessor;
         }
-        public IActionResult getUserInfo()
+        public object getUser()
         {
-           User user = new User();
+           UserDto user = new UserDto();
             if(_httpContextAccessor.HttpContext!=null)
             {
                 user.UserName = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
                 user.Role = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
            
             }
-            return new OkObjectResult(new { user });
+            return user;
 
         }
      
