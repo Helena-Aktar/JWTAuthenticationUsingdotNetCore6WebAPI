@@ -1,5 +1,6 @@
 
 global using JWTAuthenticationUsingdotNetCore6WebAPI.Services.UserServices;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -45,7 +46,62 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero // cancels out the 5min  delay of library
         };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                // Try to get the token from the "accessToken" cookie
+                if (context.Request.Cookies.ContainsKey("accessToken"))
+                {
+                    context.Token = context.Request.Cookies["accessToken"];
+                }
+                return Task.CompletedTask;
+            }
+        };
     });
+
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//})
+//.AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuerSigningKey = true,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+//                        .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+//        ValidateIssuer = false,
+//        ValidateAudience = false,
+//        ValidateLifetime = true,
+//        ClockSkew = TimeSpan.Zero // cancels out the 5min  delay of library
+//    };
+//    options.Events = new JwtBearerEvents
+//    {
+//        OnMessageReceived = context =>
+//        {
+//            // Try to get the token from the "accessToken" cookie
+//            if (context.Request.Cookies.ContainsKey("accessToken"))
+//            {
+//                context.Token = context.Request.Cookies["accessToken"];
+//            }
+//            return Task.CompletedTask;
+//        }
+//    };
+//});
+//.AddCookie(options =>
+//{
+//    options.Cookie.Name = "accessToken";
+//    options.Events = new CookieAuthenticationEvents
+//    {
+//        OnValidatePrincipal = context =>
+//        {
+//            // Your custom validation logic here
+//            return Task.CompletedTask;
+//        }
+//    };
+//});
 
 
 

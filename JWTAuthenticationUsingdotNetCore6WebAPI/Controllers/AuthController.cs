@@ -37,6 +37,12 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             object user = _userService.getUser();
             return Ok(new { user });
         }
+          [HttpGet("getUserInfoForAdmin"), Authorize(Roles = "Buyer")]
+        public IActionResult getUserInfoForAdmin()
+        {
+            object user = _userService.getUser();
+            return Ok(new { user });
+        }
 
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto req)
@@ -87,6 +93,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             string token = CreateToken(user);
             var newRefreshToken = GenerateRefreshToken();
             SetRefreshToken(newRefreshToken);
+            SetAccessToken(token);
             Console.Write(user);
             return Ok(token);
         }
