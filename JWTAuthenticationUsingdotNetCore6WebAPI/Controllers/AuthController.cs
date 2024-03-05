@@ -63,6 +63,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             string token = CreateToken(user);
             var refreshToken = GenerateRefreshToken();
             SetRefreshToken(refreshToken);
+            SetAccessToken(token);
             return Ok(new { req.UserName,token});
         }
         [HttpPost("refreshToken")]
@@ -105,6 +106,19 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             };
 
             return refreshToken;
+        }
+        private void SetAccessToken(string token)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                //Expires = newRefreshToken.Expires
+            };
+            Response.Cookies.Append("accessToken", token, cookieOptions);
+
+            //user.RefreshToken = newRefreshToken.Token;
+            //user.RefTokenCreated = newRefreshToken.Created;
+            //user.RefTokenExpires = newRefreshToken.Expires;
         }
 
         private void SetRefreshToken(RefreshToken newRefreshToken)
