@@ -36,16 +36,16 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero // cancels out the 5min  delay of library
-        };
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+            .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero // cancels out the 5min  delay of library
+    };
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
@@ -89,7 +89,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //            return Task.CompletedTask;
 //        }
 //    };
-//});
+//})
 //.AddCookie(options =>
 //{
 //    options.Cookie.Name = "accessToken";
