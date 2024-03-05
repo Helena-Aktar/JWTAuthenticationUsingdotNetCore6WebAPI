@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7xm8kHLzrgWKXIfSfnauqnHVhBMFyZk790bR2GId+3F1wWDTJ0YR+58KeDNJZ7fkVQbXGYabRXyjYEKWvtSwTg==",
+  "dgSpecHash": "4AdCE5lCim6JfV4w+qnB56PN27Roe/vSfjUTChhk7sZaKJiJA+hdYgV5VGj2t+xPikRWEbO58op2zYWM6WumAQ==",
   "success": true,
-  "projectFilePath": "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
+  "projectFilePath": "D:\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\helena.aktar\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.24\\microsoft.aspnetcore.authentication.jwtbearer.6.0.24.nupkg.sha512",
     "C:\\Users\\helena.aktar\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
@@ -26,5 +26,26 @@
     "C:\\Users\\helena.aktar\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512",
     "C:\\Users\\helena.aktar\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 7.0.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "libraryId": "System.IdentityModel.Tokens.Jwt",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 7.0.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g9c-28fc-mcx2",
+      "libraryId": "System.IdentityModel.Tokens.Jwt",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

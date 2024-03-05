@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj": {}
+    "D:\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj": {
+    "D:\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
+        "projectUniqueName": "D:\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
         "projectName": "JWTAuthenticationUsingdotNetCore6WebAPI",
-        "projectPath": "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
+        "projectPath": "D:\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI.csproj",
         "packagesPath": "C:\\Users\\helena.aktar\\.nuget\\packages\\",
-        "outputPath": "D:\\JWT\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\obj\\",
+        "outputPath": "D:\\JWTAuthenticationUsingdotNetCore6WebAPI\\JWTAuthenticationUsingdotNetCore6WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

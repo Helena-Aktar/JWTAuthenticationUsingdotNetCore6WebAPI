@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JWTAuthenticationUsingdotNetCore6WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6e38cdb30c5c3c9779b5789a5d6699d2a539d4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("JWTAuthenticationUsingdotNetCore6WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JWTAuthenticationUsingdotNetCore6WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

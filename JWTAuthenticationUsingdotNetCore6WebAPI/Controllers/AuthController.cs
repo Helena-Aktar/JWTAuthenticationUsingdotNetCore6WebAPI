@@ -100,7 +100,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             var refreshToken = new RefreshToken
             {
                 Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-                Expires = DateTime.UtcNow.AddSeconds(60),
+                Expires = DateTime.UtcNow.AddDays(7),
                 Created = DateTime.UtcNow
             };
 
@@ -135,7 +135,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             var cred = new SigningCredentials(key,SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddSeconds(30),
+                expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: cred
                 );
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
