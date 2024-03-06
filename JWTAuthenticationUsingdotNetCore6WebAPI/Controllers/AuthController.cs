@@ -12,6 +12,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuthController : ControllerBase
     {
         public static User user = new User();
@@ -24,7 +25,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             _configuration = configuration;
             _userService = userService;
         }
-        [HttpGet("getUserInfo"),Authorize]
+        [HttpGet("getUserInfo")]
         public IActionResult GetMe()
         {
             //without using userService and interface
@@ -37,25 +38,26 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             object user = _userService.getUser();
             return Ok(new { user });
         }
-          [HttpGet("getUserInfoForAdmin"), Authorize(Roles = "Buyer")]
+          [HttpGet("getUserInfoForAdmin"), Authorize(Roles = "Admin")]
         public IActionResult getUserInfoForAdmin()
         {
             object user = _userService.getUser();
             return Ok(new { user });
         }
 
-        [HttpPost("register")]
+        [HttpPost("register"), AllowAnonymous]
         public async Task<ActionResult<User>> Register(UserDto req)
         {
             CreatePasswordHash(req.Password, out byte[] passwordHash, out byte[] passwordSalt);
             user.UserName= req.UserName;
+            user.Role= req.Role;
             user.PasswordHash= passwordHash;
             user.PasswordSalt= passwordSalt;
       //dont return passwordHash and passwordSalt while Working IRL
             return Ok(new {user});
         }
 
-        [HttpPost("login")]
+        [HttpPost("login"), AllowAnonymous]
         public async Task<ActionResult<string>> Login(UserDto req)
         {
             if (user.UserName != req.UserName)
@@ -72,7 +74,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             SetAccessToken(token);
             return Ok(new { req.UserName,token});
         }
-        [HttpPost("refreshToken")]
+        [HttpPost("refreshToken"), AllowAnonymous]
         public async Task<ActionResult<string>> RefreshToken()
         {
             string tokenExpiresString = user.RefTokenExpires.ToString();

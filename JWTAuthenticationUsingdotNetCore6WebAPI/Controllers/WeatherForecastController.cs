@@ -6,7 +6,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-
+    [Authorize(Roles= "Admin")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -21,7 +21,7 @@ namespace JWTAuthenticationUsingdotNetCore6WebAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast") ,Authorize(Roles="Admin")] //,AllowAnonymous] //anyone can access this method
+        [HttpGet(Name = "GetWeatherForecast")] //,AllowAnonymous] //anyone can access this method
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
